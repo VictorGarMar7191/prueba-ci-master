@@ -135,7 +135,11 @@ app.get('/users/:id', UserController.findOne);
 app.patch('/users/:id', [mult.single('photo'),manageFiles], UserController.update);
 app.delete('/users/:id', UserController.remove);
 
-app.listen(3000, ()=>{
+// HEROKU
+// node.js va a buscar la variable port, y si no la encuentra pone el puerto 3000
+const port = process.env.PORT || 3000;
+// app.listen(3000, ()=>{
+app.listen(port, ()=>{
     console.log('Server ready 🚀!!!');
 })
 

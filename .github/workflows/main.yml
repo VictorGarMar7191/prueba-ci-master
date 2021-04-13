@@ -1,0 +1,28 @@
+# nombre que quiero que tenga mi CI
+name: Api Mongoose V1
+
+# cuando se va a ejecutar este workflow cada que haga push a un branch
+on: [push]
+
+# los jobs son pipelines o stages,
+# es decir, procesos que tiene que hacer este workflow
+# este workflow 
+# debe: compilar(hacer build) 
+# y testear
+jobs:
+# build se encarga de ver que el proyecto funcione
+  build:
+    # runs-on le dice en qué sistema operativo debería correr mi proyecto
+    # se puede cambiar por windows o mac, pero se recomienda que sea ubuntu
+    # porque casi todos los servers son linux
+    runs-on: ubuntu-latest
+    # son los pasos que el CI debe hacer para que el build funcione
+    steps: 
+    # uses es qué versión de actions va a usar
+    - uses: actions/checkout@v2
+    # nombra el paso en el que estoy
+    - name: Build image Docker
+    # si no tengo el dockerfile
+    # run ejecuta un comando específico
+    # run: npm install
+    - run: docker build . --file Dockerfile --tag api-mongoose-v1
